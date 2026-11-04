@@ -4,8 +4,8 @@ Python analysis workflows accompanying a study of polarization-resolved Cu2O exc
 
 ## Analysis pipeline
 
-1. **`arpls\\\_preprocessing/`** — read raw spectral CSVs, detect isolated spikes, fit an adaptive iteratively reweighted penalized least-squares (arPLS) background, subtract it, apply the relative ROI2 collection-efficiency factor, save corrected spectra, and integrate an experimental wavelength window.
-2. **`joint\\\_lorentzian\\\_fit.py`** — load the corrected ROI1/ROI2 spectra, interpolate onto a common wavelength grid, fit two Lorentzian peaks jointly with shared centers/FWHMs and ROI-specific amplitudes/offsets, calculate the fitted 2p area and ROI differences, and save figures/results.
+1. **`arpls\\\_preprocessing/`** — read raw spectral CSVs, detect isolated spikes, fit an adaptive iteratively reweighted penalized least-squares (arPLS) background, subtract it, apply the relative ROI2 collection-efficiency factor, save corrected spectra, and perform a diagnostic trapezoidal integration of the baseline-corrected spectra.
+2. **`joint\\\_lorentzian\\\_fit.py`** — load the corrected ROI1/ROI2 spectra, interpolate onto a common wavelength grid, fit two Lorentzian peaks jointly with shared centers/FWHMs and ROI-specific amplitudes/offsets, calculate the fitted 2p area and ROI differences, and save figures/results. The integrated area of the second fitted Lorentzian, corresponding to the 2p transition, is used for the subsequent polarization contrast and visibility analysis.
 3. **`fit\\\_polarization\\\_visibility\\\_contrast.py`** — load the 2p fitted areas from the island and G1 geometries; calculate normalized H/V contrast and its sinusoidal modulation amplitude, offset and residual-based standard errors.
 
 ## Installation
@@ -63,7 +63,6 @@ python joint\\\_lorentzian\\\_fit.py --collection island --input-dir "path/to/co
 
 Outputs include `ROI2\\\_minus\\\_ROI1\\\_joint\\\_lorentzian\\\_results.csv` under each `results/yellow/results\\\_lorentzian\\\_fit\\\_ROI2\\\_minus\\\_ROI1\\\_...` directory.
 
-The 2p line is the **second fitted Lorentzian** in this code ( integration limits `577.2–581.5 nm`), not an independent raw trapezoidal integration.
 
 ## Step 3 — fit polarization contrast
 
@@ -83,13 +82,6 @@ A = sqrt(a² + b²)
 
 `A` is the fitted **contrast modulation amplitude**. Its correspondence to conventional `(I\\\_max-I\\\_min)/(I\\\_max+I\\\_min)` visibility assumes appropriately calibrated complementary channels; check `P0` and polarization calibration. The printed 1σ errors are from an unweighted linear least-squares residual covariance estimate, **not** propagation of independently measured spectrum/fit uncertainties.
 
-## Reproducibility and release checklist
-
-* Confirm analysis windows, waveplate-zero offset, H/V channel assignments, ROI2 factor `0.728`, and whether these are the exact versions used for the manuscript's reported figures.
-* Retain the original raw spectra and calibration records, subject to group/institution approval; consider archiving them separately with versioned links to this repository.
-* Provide representative/example input data if public redistribution is permitted, together with a figure-to-script mapping for all manuscript and supplementary figures.
-* Confirm output on a clean environment using the actual experimental files (the authors' original data are not included in this ZIP).
-* Coordinate with the PI/coauthors before making repository public or assigning an open-source license. No license is added here pending that decision.
 
 ## Contents
 
