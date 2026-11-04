@@ -44,7 +44,7 @@ results/yellow/results\\\_arpls\\\_cI\\\_eI\\\_no\\\_background/corrected\\\_spe
 results/yellow/results\\\_arpls\\\_cG1\\\_eI\\\_no\\\_background/corrected\\\_spectra/
 ```
 
-The preprocessing uses **arPLS rather than a separately measured background file**. After baseline subtraction, it multiplies ROI2 by the experimentally supplied relative-efficiency factor `0.728` and leaves ROI1 unchanged. Both original and corrected intensities are saved; this factor must not be applied again downstream. Confirm the calibration before publication.
+The preprocessing uses **arPLS rather than a separately measured background file**. After baseline subtraction, it multiplies ROI2 by the experimentally supplied relative-efficiency factor `0.728` and leaves ROI1 unchanged. Both original and corrected intensities are saved; this factor must not be applied again downstream. 
 
 ## Step 2 — jointly fit ROI1/ROI2 spectra
 
@@ -63,7 +63,7 @@ python joint\\\_lorentzian\\\_fit.py --collection island --input-dir "path/to/co
 
 Outputs include `ROI2\\\_minus\\\_ROI1\\\_joint\\\_lorentzian\\\_results.csv` under each `results/yellow/results\\\_lorentzian\\\_fit\\\_ROI2\\\_minus\\\_ROI1\\\_...` directory.
 
-The 2p line is the **second fitted Lorentzian** in this code (center guess `579.1 nm`; integration limits `577.2–581.5 nm`), not an independent raw trapezoidal integration.
+The 2p line is the **second fitted Lorentzian** in this code ( integration limits `577.2–581.5 nm`), not an independent raw trapezoidal integration.
 
 ## Step 3 — fit polarization contrast
 
