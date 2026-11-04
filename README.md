@@ -72,15 +72,15 @@ After completing *both* island and G1 Lorentzian analyses:
 python fit_polarization_visibility_contrast.py
 ```
 
-Outputs are saved in `polarization_contrast_fit_results/`. This script assumes **ROI2 = H and ROI1 = V**, uses the already corrected integrated intensities, and maps waveplate angle `w` to `theta = 2 \\\* (w - 154.5°)` for its collection polarization angle. It fits
+Outputs are saved in `polarization_contrast_fit_results/`. This script assumes **ROI2 = H and ROI1 = V**, uses the already corrected integrated intensities, and maps waveplate angle `w` to `theta = 2 * (w - 154.5°)` for its collection polarization angle. It fits
 
 ```text
 P(theta) = (H - V) / (H + V)
-         = P0 + a\\\*cos(2\\\*theta) + b\\\*sin(2\\\*theta)
+         = P0 + a*cos(2*theta) + b*sin(2*theta)
 A = sqrt(a² + b²)
 ```
 
-`A` is the fitted **contrast modulation amplitude**. Its correspondence to conventional `(I\\\_max-I\\\_min)/(I\\\_max+I\\\_min)` visibility assumes appropriately calibrated complementary channels; check `P0` and polarization calibration. The printed 1σ errors are from an unweighted linear least-squares residual covariance estimate, **not** propagation of independently measured spectrum/fit uncertainties.
+The fitted amplitude (A) quantifies the polarization modulation of the normalized H/V contrast. Under appropriately calibrated, complementary detection channels, it provides an estimate of the polarization visibility. The reported 1σ uncertainties are derived from the least-squares fit residuals and do not include uncertainties propagated from the preceding spectral analysis.
 
 
 ## Contents
