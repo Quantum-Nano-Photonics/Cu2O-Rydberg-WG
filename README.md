@@ -96,7 +96,6 @@ arpls\\\_preprocessing/
     README.txt
 joint\\\_lorentzian\\\_fit.py
 fit\\\_polarization\\\_visibility\\\_contrast.py
-requirements.txt
 .gitignore
 README.md
 data/raw/.gitkeep
