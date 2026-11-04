@@ -19,7 +19,7 @@ python -m venv .venv
 Activate the environment (Windows PowerShell):
 
 ```powershell
-.venv\\\\Scripts\\\\Activate.ps1
+.venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
 ```
 
@@ -32,7 +32,7 @@ Place the input CSV spectra in `data/raw/`, or set environment variable `CU2O\\\
 Run from the repository root:
 
 ```bash
-python arpls\\\_preprocessing/main\\\_arpls.py
+python arpls_preprocessing/main_arpls.py
 ```
 
 Then edit `COLLECTION = "cG1"` in `arpls\\\_preprocessing/config\\\_arpls.py` and repeat to prepare the G1 collection configuration. You can switch back to `cI` without deleting the G1 output.
@@ -51,8 +51,8 @@ The preprocessing uses **arPLS rather than a separately measured background file
 From the repository root:
 
 ```bash
-python joint\\\_lorentzian\\\_fit.py --collection island --no-show
-python joint\\\_lorentzian\\\_fit.py --collection G1 --no-show
+python joint_lorentzian_fit.py --collection island --no-show
+python joint_lorentzian_fit.py --collection G1 --no-show
 ```
 
 The default `--paper-root` is the repository root. To fit files stored elsewhere:
@@ -69,7 +69,7 @@ Outputs include `ROI2\\\_minus\\\_ROI1\\\_joint\\\_lorentzian\\\_results.csv` un
 After completing *both* island and G1 Lorentzian analyses:
 
 ```bash
-python fit\\\_polarization\\\_visibility\\\_contrast.py
+python fit_polarization_visibility_contrast.py
 ```
 
 Outputs are saved in `polarization\\\_contrast\\\_fit\\\_results/`. This script assumes **ROI2 = H and ROI1 = V**, uses the already corrected integrated intensities, and maps waveplate angle `w` to `theta = 2 \\\* (w - 154.5°)` for its collection polarization angle. It fits
@@ -86,22 +86,9 @@ A = sqrt(a² + b²)
 ## Contents
 
 ```text
-arpls\\\_preprocessing/
-    arpls\\\_baseline.py
-    config\\\_arpls.py
-    main\\\_arpls.py
-    plotting\\\_arpls.py
-    processing\\\_arpls.py
-    spectrum\\\_io\\\_arpls.py
-    README.txt
-joint\\\_lorentzian\\\_fit.py
-fit\\\_polarization\\\_visibility\\\_contrast.py
-.gitignore
+arpls_preprocessing/
+joint_lorentzian_fit.py
+fit_polarization_visibility_contrast.py
 README.md
-data/raw/.gitkeep
 ```
-
-### Scope of changes from the supplied archive
-
-The analysis scripts are organized to support reproducible spectral preprocessing, Lorentzian peak fitting, and polarization visibility calculations. Input and output directories can be configured for different computing environments.
 
